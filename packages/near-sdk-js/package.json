@@ -52,7 +52,8 @@
     "rollup-plugin-sourcemaps": "^0.6.3",
     "signale": "^1.4.0",
     "ts-morph": "^16.0.0",
-    "typescript": "~4.7.2"
+    "typescript": "~4.7.2",
+    "borsh": "https://github.com/gagdiez/borsh-js#263e90206ec8c5d83a8245e830b686e971bed44a"
   },
   "files": [
     "builder",

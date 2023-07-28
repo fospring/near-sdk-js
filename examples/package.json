@@ -7,6 +7,7 @@
   "scripts": {
     "build": "run-s build:*",
     "build:status-message": "near-sdk-js build src/status-message.js build/status-message.wasm",
+    "build:status-message-borsh": "near-sdk-js build src/status-message-borsh.js build/status-message-borsh.wasm",
     "build:clean-state": "near-sdk-js build src/clean-state.js build/clean-state.wasm",
     "build:counter": "near-sdk-js build src/counter.js build/counter.wasm",
     "build:counter-lowlevel": "near-sdk-js build src/counter-lowlevel.js build/counter-lowlevel.wasm",
@@ -53,7 +54,8 @@
     "lodash-es": "^4.17.21",
     "near-contract-standards": "workspace:*",
     "near-sdk-js": "workspace:*",
-    "typescript": "^4.7.4"
+    "typescript": "^4.7.4",
+    "borsh": "https://github.com/gagdiez/borsh-js#263e90206ec8c5d83a8245e830b686e971bed44a"
   },
   "devDependencies": {
     "@types/lodash-es": "^4.17.6",

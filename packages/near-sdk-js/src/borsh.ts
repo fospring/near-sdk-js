@@ -1,6 +1,6 @@
 import * as borsh from 'borsh';
 import {Schema} from "borsh";
-import {DecodeTypes} from "borsh/lib/types";
+import {DecodeTypes} from "borsh/lib/types/types";
 export function borshSerialize(schema: Schema, value: unknown, checkSchema?: boolean): Uint8Array {
     return borsh.serialize(schema, value, checkSchema);
 }

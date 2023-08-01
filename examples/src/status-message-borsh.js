@@ -1,7 +1,7 @@
-import {NearBindgen, call, view, near} from "near-sdk-js";
+import {NearBindgen, call, view, near, borshSerialize, borshDeserialize} from "near-sdk-js";
 import { Buffer } from 'buffer/';
 import {encode} from "near-sdk-js/lib/utils.js";
-import * as borsh from 'borsh';
+// import * as borsh from 'borsh';
 
 @NearBindgen({})
 export class StatusMessage {
@@ -37,14 +37,14 @@ const schema = {
 };
 
 function borshSerializeStatusMessage(statusMessage) {
-    near.storageWriteRaw(encode('STATE'), borsh.serialize(schema, statusMessage));
+    near.storageWriteRaw(encode('STATE'), borshSerialize(schema, statusMessage));
 }
 
 function borshDeserializeStatusMessage(to) {
     let state = near.storageRead('STATE');
 
     if (state) {
-        let temp = borsh.deserialize(schema, Buffer.from(state), StatusMessage)
+        let temp = borshDeserialize(schema, Buffer.from(state), StatusMessage)
         Object.assign(to, temp);
     } else {
         throw new Error('Contract state is empty')

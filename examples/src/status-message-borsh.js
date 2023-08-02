@@ -34,14 +34,14 @@ const schema = {
 };
 
 function borshSerializeStatusMessage(statusMessage) {
-    near.storageWriteRaw(encode('STATE'), borshSerialize(schema, statusMessage));
+    near.storageWrite('STATE', borshSerialize(schema, statusMessage));
 }
 
 function borshDeserializeStatusMessage(to) {
     let state = near.storageRead('STATE');
 
     if (state) {
-        let temp = borshDeserialize(schema, Buffer.from(state), StatusMessage)
+        let temp = borshDeserialize(schema, Buffer.from(state))
         Object.assign(to, temp);
     } else {
         throw new Error('Contract state is empty')

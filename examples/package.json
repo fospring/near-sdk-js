@@ -46,7 +46,8 @@
     "test:parking-lot": "ava __tests__/test-parking-lot.ava.js",
     "test:programmatic-update": "ava __tests__/test-programmatic-update.ava.js",
     "test:state-migration": "ava __tests__/test-state-migration.ava.js",
-    "test:nested-collections": "ava __tests__/test-nested-collections.ava.js"
+    "test:nested-collections": "ava __tests__/test-nested-collections.ava.js",
+    "test:status-message-borsh": "ava __tests__/test-status-message-borsh.ava.js"
   },
   "author": "Near Inc <hello@nearprotocol.com>",
   "license": "Apache-2.0",

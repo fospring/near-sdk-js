@@ -1,17 +1,29 @@
 import {NearBindgen, call, view, near, borshSerialize, borshDeserialize} from "near-sdk-js";
 
-@NearBindgen({})
+const schema = {
+    struct: { records: {map: { key: 'string', value: 'string' }} }
+};
+
+function borshSerializeStatusMessage(statusMessage) {
+    return borshSerialize(schema, statusMessage);
+}
+
+function borshDeserializeStatusMessage(value) {
+    let temp = borshDeserialize(schema, value)
+    return temp;
+}
+
+@NearBindgen({
+    serializer(value) {
+        return borshSerializeStatusMessage(value);
+    },
+    deserializer(value) {
+        return borshDeserializeStatusMessage(value);
+    }
+})
 export class StatusMessage {
     constructor() {
         this.records = new Map()
-    }
-
-    deserialize() {
-        borshDeserializeStatusMessage(this)
-    }
-
-    serialize() {
-        borshSerializeStatusMessage(this)
     }
 
     @call({})
@@ -25,25 +37,5 @@ export class StatusMessage {
     get_status({ account_id }) {
         env.log(`get_status for account_id ${account_id}`)
         return this.records.get(account_id) || null
-    }
-}
-
-
-const schema = {
-    struct: { records: {map: { key: 'string', value: 'string' }} }
-};
-
-function borshSerializeStatusMessage(statusMessage) {
-    near.storageWrite('STATE', borshSerialize(schema, statusMessage));
-}
-
-function borshDeserializeStatusMessage(to) {
-    let state = near.storageRead('STATE');
-
-    if (state) {
-        let temp = borshDeserialize(schema, Buffer.from(state))
-        Object.assign(to, temp);
-    } else {
-        throw new Error('Contract state is empty')
     }
 }

@@ -1,7 +1,4 @@
 import {NearBindgen, call, view, near, borshSerialize, borshDeserialize} from "near-sdk-js";
-import { Buffer } from 'buffer/';
-import {encode} from "near-sdk-js/lib/utils.js";
-// import * as borsh from 'borsh';
 
 @NearBindgen({})
 export class StatusMessage {

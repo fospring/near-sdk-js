@@ -30,7 +30,7 @@ export class StatusMessage {
 
 
 const schema = {
-    struct: { map: { key: 'string', value: 'string' } }
+    struct: { records: {map: { key: 'string', value: 'string' }} }
 };
 
 function borshSerializeStatusMessage(statusMessage) {

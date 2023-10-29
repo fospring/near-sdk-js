@@ -120,3 +120,19 @@ test("sets then gets nested nested collection", async (t) => {
     "dog"
   );
 });
+
+test("Ali add_lk_maps then get_lk_maps text", async (t) => {
+  const { ali, nestedCollections } = t.context.accounts;
+  await ali.call(nestedCollections, "add_lk_map", { id: "1", text: "hello" });
+  await ali.call(nestedCollections, "add_lk_map", { id: "2", text: "world" });
+
+  t.is(
+      await nestedCollections.view("get_lk_map", { id: "1", accountId: ali.accountId }),
+      "hello"
+  );
+
+  t.is(
+      await nestedCollections.view("get_lk_map", { id: "2", accountId: ali.accountId }),
+      "world"
+  );
+});

@@ -161,7 +161,7 @@ test("Approve call", async (t) => {
       account_id: approvalReceiver.accountId,
       msg: "return-now",
     },
-    { attachedDeposit: "550000000000000000000", gas: "300 Tgas" }
+    { attachedDeposit: "600000000000000000000", gas: "300 Tgas" }
   );
   t.is(res, "cool");
 

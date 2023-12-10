@@ -109,6 +109,7 @@ test("Transfer call fast return to sender", async (t) => {
     },
     { attachedDeposit: "1", gas: MAX_GAS }
   );
+  console.log("res.result=", res.result);
   t.is(
     Buffer.from(res.result.status.SuccessValue, "base64").toString(),
     "false"
@@ -132,6 +133,7 @@ test("Transfer call slow return to sender", async (t) => {
     },
     { attachedDeposit: "1", gas: MAX_GAS }
   );
+  console.log("res.result=", res.result);
   t.is(
     Buffer.from(res.result.status.SuccessValue, "base64").toString(),
     "false"
@@ -201,6 +203,7 @@ test("Transfer call receiver panics", async (t) => {
     },
     { attachedDeposit: "1", gas: MAX_GAS }
   );
+  console.log("res.result=", res.result);
   t.is(
     Buffer.from(res.result.status.SuccessValue, "base64").toString(),
     "false"

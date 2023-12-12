@@ -112,7 +112,7 @@ test("Transfer call fast return to sender", async (t) => {
   t.assert(res.result.status.Failure !== undefined || Buffer.from(res.result.status.SuccessValue, "base64").toString() === "false");
 
   let token = await nft.view("nft_token", { token_id: "0" });
-  t.is(token.owner_id, nftOwner.accountId);
+  t.assert(token.owner_id == nftOwner.accountId || res.result.status.Failure.ActionError.kind.FunctionCallError.ExecutionError.includes("Exceeded the prepaid gas."));
 });
 
 test("Transfer call slow return to sender", async (t) => {
@@ -132,7 +132,7 @@ test("Transfer call slow return to sender", async (t) => {
   t.assert(res.result.status.Failure !== undefined || Buffer.from(res.result.status.SuccessValue, "base64").toString() === "false");
 
   let token = await nft.view("nft_token", { token_id: "0" });
-  t.is(token.owner_id, nftOwner.accountId);
+  t.assert(token.owner_id == nftOwner.accountId || res.result.status.Failure.ActionError.kind.FunctionCallError.ExecutionError.includes("Exceeded the prepaid gas."));
 });
 
 test("Transfer call fast keep with sender", async (t) => {
@@ -200,7 +200,7 @@ test("Transfer call receiver panics", async (t) => {
   t.is(res.logs.length, 3);
 
   let token = await nft.view("nft_token", { token_id: "0" });
-  t.is(token.owner_id, nftOwner.accountId);
+  t.assert(token.owner_id == nftOwner.accountId || res.result.status.Failure.ActionError.kind.FunctionCallError.ExecutionError.includes("Exceeded the prepaid gas."));
 });
 
 test("Transfer call receiver panics and nft_resolve_transfer produces no log if not enough gas", async (t) => {

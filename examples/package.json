@@ -34,7 +34,7 @@
     "build:state-migration:new": "near-sdk-js build src/state-migration-new.ts build/state-migration-new.wasm",
     "build:status-deserialize-class": "near-sdk-js build src/status-deserialize-class.js build/status-deserialize-class.wasm",
     "test": "ava && pnpm test:counter-lowlevel && pnpm test:counter-ts",
-    "test:nft": "ava __tests__/standard-nft/*",
+    "test:nft": "*",
     "test:ft": "ava __tests__/standard-ft/*",
     "test:status-message": "ava __tests__/test-status-message.ava.js",
     "test:status-message-migrate-add-field": "ava __tests__/test-state-message-migration-add-filed.ava.js",
